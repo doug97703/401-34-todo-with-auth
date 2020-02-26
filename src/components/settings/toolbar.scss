@@ -1,0 +1,38 @@
+input {
+    border-radius: 2px;
+    border: none;
+    padding: 5px;
+    margin-right: 10px;
+}
+
+#btn {
+    height: 40px;
+    border-radius: 2px;
+    border: none;
+    background-color: rgb(114, 7, 114);
+    color: white;
+    font-weight: bold;
+    margin-right: 3%;
+}
+
+h2 {
+    color: rgb(7, 101, 114);
+}
+
+#design-settings {
+    display: flex;
+}
+
+#design-settings, #form {
+    background-color: rgb(87, 87, 87);
+    width: 90%;
+    padding: 1%;
+    border-radius: 5px;
+}
+
+#settings-complete {
+    margin-right: 5%;
+    text-align: center;
+    width: 40%;
+    
+}
