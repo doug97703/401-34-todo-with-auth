@@ -4,21 +4,21 @@ import jwt from 'jsonwebtoken';
 
 const API = 'https://lit-anchorage-79085.herokuapp.com';
 
-const testLogins = {
-  testAdmin: process.env.REACT_APP_ADMIN_TOKEN || '',
-  testEditor: process.env.REACT_APP_EDITOR_TOKEN || '',
-  testUser: process.env.REACT_APP_USER_TOKEN || '',
-  doug: process.env.REACT_APP_ADMIN_TOKEN || '',
-};
-
 export const LoginContext = React.createContext();
 let user;
+
+const capabilities = {
+  admin: ['read', 'delete', 'update', 'create'],
+  reader: ['read'],
+  creator: ['read', 'create'],
+  editor: ['read', 'delete', 'update'],
+}
 
 class LoginProvider extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      loggedIn: true,
+      loggedIn: false,
       login: this.login,
       logout: this.logout,
       user: {},
@@ -26,11 +26,6 @@ class LoginProvider extends React.Component {
   }
 
   login = (username, password) => {
-    // This is foul and unsafe ... but when working offline / testmode ess oh kay
-    if (testLogins[username]) {
-      this.validateToken(testLogins[username]);
-    }
-    else {
       fetch(`${API}/signin`, {
         method: 'post',
         mode: 'cors',
@@ -40,18 +35,20 @@ class LoginProvider extends React.Component {
         }),
       })
         .then(response => response.text())
-        .then(token => this.validateToken(token))
+        .then(token => {
+          this.validateToken(token)
+        })
         .catch(console.error);
-    }
   }
 
   validateToken = token => {
     try {
       user = jwt.verify(token, process.env.REACT_APP_SECRET);
+      user.capabilities = capabilities[user.role];
       this.setLoginState(true, token, user);
     }
     catch (e) {
-      this.setLoginState(true, token, user);
+      this.setLoginState(false, false, null);
       console.log('Token Validation Error-------------------', e);
     }
 

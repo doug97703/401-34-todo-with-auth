@@ -1,6 +1,7 @@
 import React from 'react';
 import { SettingsContext } from '../context/settings';
 import './toolbar.scss'
+import Auth from '../auth/auth'
 
 class Toolbar extends React.Component {
 
@@ -11,7 +12,7 @@ class Toolbar extends React.Component {
   render() {
     let label = this.context.completed === 'display' ? 'Display' : 'Hide'
     return (
-      <>
+      <Auth capability="update">
         <h2>Design Settings</h2>
         <div id="design-settings">
           <div id="settings-complete">
@@ -23,7 +24,7 @@ class Toolbar extends React.Component {
             <input onChange={this.context.setPerPage} placeholder="set items per page" type="text"></input>
           </div>
         </div>
-      </>
+      </Auth>
     );
   }
 }

@@ -1,6 +1,7 @@
 import React, {useContext, useState, useEffect} from 'react'
 import { SettingsContext } from '../context/settings';
 import { When } from '../if';
+import Auth from '../auth/auth'
 
 export default props => {
   const settings = useContext(SettingsContext)
@@ -40,7 +41,9 @@ export default props => {
             <div>
               <span onClick={() => props.toggleComplete(item._id)}>{item.text}</span>
               <button onClick={() => props.toggleDetails(item._id)}>Details</button>
-              <button onClick={() => props.delete(item._id)}>Delete</button>
+              <Auth capability="delete">
+                <button onClick={() => props.delete(item._id)}>Delete</button>
+              </Auth>
             </div>
           </li>
         ))}
