@@ -18,7 +18,7 @@ class LoginProvider extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      loggedIn: false,
+      loggedIn: true,
       login: this.login,
       logout: this.logout,
       user: {},

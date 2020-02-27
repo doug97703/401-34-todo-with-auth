@@ -8,10 +8,10 @@ const If = props => {
 class Auth extends React.Component {
   static contextType = LoginContext;
   render() {
-    let okToRender = false;
+    let okToRender = true;
 
     try {
-      okToRender = true
+      okToRender = this.context.loggedIn ? true : false
         // this.context.loggedIn &&
         // (this.props.capability
         //   ? this.context.user.capabilities.includes(this.props.capability)

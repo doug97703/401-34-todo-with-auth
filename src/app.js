@@ -35,10 +35,12 @@ export default class App extends React.Component {
         <LoginContext>
           <Login />
           <hr />
-          <SettingsContext>
-            <Toolbar />
-            <ToDo />
-          </SettingsContext>
+          <Auth>
+            <SettingsContext>
+              <Toolbar />
+              <ToDo />
+            </SettingsContext>
+          </Auth>
         </LoginContext>
       </>
     );
