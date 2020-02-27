@@ -36,3 +36,6 @@ Possible roles: admin, editor, reader, creator, none
     "react-router-dom": "5.1.2",
     "react-scripts": "^3.4.0",
     "uuid": "3.4.0"
+
+### Current Mockup on 2/27/20:
+![](./mockup-todo1.png)
