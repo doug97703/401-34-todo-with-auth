@@ -4,6 +4,10 @@
   "description": "",
   "keywords": [],
   "main": "src/index.js",
+  "engines": {
+    "npm": "6.13.6",
+    "node": "v10.13.0"
+  },
   "dependencies": {
     "jsonwebtoken": "^8.5.1",
     "node-sass": "^4.12.0",
